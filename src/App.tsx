@@ -21,7 +21,7 @@ export const App: React.FC = () => {
 
       <p className="lead" data-cy="info">
         Page {pageChange} (items {fromItem + 1} -{' '}
-        {toItem + 1 > itemsLength ? itemsLength : toItem} of {itemsLength})
+        {Math.min(pageChange * perPageSelector, itemsLength)} of {itemsLength})
       </p>
 
       <div className="form-group row">
@@ -53,9 +53,7 @@ export const App: React.FC = () => {
         perPage={perPageSelector}
         currentPage={pageChange}
         onPageChange={page => {
-          if (pageChange !== page) {
-            setPageChange(page);
-          }
+          setPageChange(page);
         }}
       />
 
